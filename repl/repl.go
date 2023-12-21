@@ -7,44 +7,65 @@ import (
 	"github.com/NuruProgramming/NuruIDLE/parser"
 )
 
-func Read(contents string, env *object.Environment) (string, []string) {
+type Output struct {
+	Evaluated string
+	Errors    []string
+}
+
+func Read(contents string, env *object.Environment) Output {
 
 	l := lexer.New(contents)
 	p := parser.New(l)
 
+	var o Output
+
 	program := p.ParseProgram()
 
 	if len(p.Errors()) != 0 {
-		return "", p.Errors()
+		o.Errors = p.Errors()
+		return o
 	}
 
 	evaluated := evaluator.Eval(program, env)
 	if evaluated != nil {
+		if evaluated.Type() == object.ERROR_OBJ {
+			o.Errors = []string{evaluated.Inspect()}
+			return o
+		}
 		if evaluated.Type() != object.NULL_OBJ {
-			return evaluated.Inspect(), nil
+			o.Evaluated = evaluated.Inspect()
+			return o
 		}
 	}
 
-	return "", nil
+	return o
 }
 
-func Start(in string, env *object.Environment) (string, []string) {
+func Start(in string, env *object.Environment) Output {
 
 	l := lexer.New(in)
 	p := parser.New(l)
 
+	var o Output
+
 	program := p.ParseProgram()
 
 	if len(p.Errors()) != 0 {
-		return "", p.Errors()
+		o.Errors = p.Errors()
+		return o
 	}
 
 	evaluated := evaluator.Eval(program, env)
 	if evaluated != nil {
+		if evaluated.Type() == object.ERROR_OBJ {
+			o.Errors = []string{evaluated.Inspect()}
+			return o
+		}
 		if evaluated.Type() != object.NULL_OBJ {
-			return evaluated.Inspect(), nil
+			o.Evaluated = evaluated.Inspect()
+			return o
 		}
 	}
 
-	return "", nil
+	return o
 }

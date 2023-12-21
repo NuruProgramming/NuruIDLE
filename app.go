@@ -25,6 +25,6 @@ func (a *App) startup(ctx context.Context) {
 }
 
 // Greet returns a greeting for the given name
-func (a *App) Start(name string) (string, []string) {
+func (a *App) Start(name string) any {
 	return repl.Start(name, a.env)
 }
