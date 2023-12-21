@@ -1,9 +1,11 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'</script>
+import HelloWorld from "./components/HelloWorld.vue";
+import Repl from "./components/repl/Index.vue";
+</script>
 
 <template>
-  <img id="logo" alt="Wails logo" src="./assets/images/logo-universal.png"/>
-  <HelloWorld/>
+  <el-input></el-input>
+  <Repl />
 </template>
 
 <style>
