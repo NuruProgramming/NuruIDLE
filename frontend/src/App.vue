@@ -7,7 +7,6 @@ const toggleDark = useToggle(isDark);
 </script>
 
 <template>
-  <el-input></el-input>
   <Repl />
 </template>
 

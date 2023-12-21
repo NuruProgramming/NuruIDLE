@@ -1,9 +1,12 @@
 <template>
   <div>
-    <input v-model="input" />
-    <button @click="sendToEngine">Send</button>
-
-    <div>The response is : {{ response }}</div>
+    <div v-for="entry in entries">
+      <div>>>> {{ entry.input }}</div>
+      <div>
+        {{ entry.response }}
+      </div>
+    </div>
+    <el-input v-model="input" @keyup.enter="sendToEngine"></el-input>
   </div>
 </template>
 
@@ -14,7 +17,12 @@ export default {
   data() {
     return {
       input: "",
-      response: "",
+      entries: [
+        {
+          input: "x + 2",
+          response: " 2",
+        },
+      ],
     };
   },
   methods: {
@@ -22,15 +30,25 @@ export default {
       console.log("im there");
 
       Start(this.input)
-        .then((resp) => {
+        .then((resp, other) => {
           console.log("im here");
-          this.response = resp;
+          this.createNewEntry(this.input, resp);
           console.log(resp);
+          console.log("other", other);
         })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error);
+
+          this.createNewEntry(this.input, error);
           console.log("im failed");
         });
       console.log("im done");
+    },
+    createNewEntry(item, respone) {
+      this.entries.push({
+        input: item,
+        response: respone,
+      });
     },
   },
 };
