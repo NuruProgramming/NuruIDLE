@@ -13,5 +13,5 @@ func evalIdentifier(node *ast.Identifier, env *object.Environment) object.Object
 		return builtin
 	}
 
-	return newError("Mstari %d: Neno Halifahamiki: %s", node.Token.Line, node.Value)
+	return newError("Neno Halifahamiki: %s", node.Value)
 }

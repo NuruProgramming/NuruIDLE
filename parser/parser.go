@@ -210,7 +210,7 @@ func (p *Parser) Errors() []string {
 }
 
 func (p *Parser) peekError(t token.TokenType) {
-	msg := fmt.Sprintf("Mstari %d: Tulitegemea kupata %s, badala yake tumepata %s", p.curToken.Line, t, p.peekToken.Type)
+	msg := fmt.Sprintf("Tulitegemea kupata %s, badala yake tumepata %s", t, p.peekToken.Type)
 	p.errors = append(p.errors, msg)
 }
 
@@ -270,7 +270,7 @@ func (p *Parser) parsePrefixExpression() ast.Expression {
 }
 
 func (p *Parser) noPrefixParseFnError(t token.TokenType) {
-	msg := fmt.Sprintf("Mstari %d: Tumeshindwa kuparse %s", p.curToken.Line, t)
+	msg := fmt.Sprintf("Tumeshindwa kuparse %s", t)
 	p.errors = append(p.errors, msg)
 }
 
@@ -290,7 +290,7 @@ func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
 }
 
 func (p *Parser) noInfixParseFnError(t token.TokenType) {
-	msg := fmt.Sprintf("Mstari %d: Tumeshindwa kuparse %s", p.curToken.Line, t)
+	msg := fmt.Sprintf("Tumeshindwa kuparse %s", t)
 	p.errors = append(p.errors, msg)
 }
 

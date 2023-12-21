@@ -7,11 +7,11 @@ func evalIndexExpression(left, index object.Object, line int) object.Object {
 	case left.Type() == object.ARRAY_OBJ && index.Type() == object.INTEGER_OBJ:
 		return evalArrayIndexExpression(left, index)
 	case left.Type() == object.ARRAY_OBJ && index.Type() != object.INTEGER_OBJ:
-		return newError("Mstari %d: Tafadhali tumia number, sio: %s", line, index.Type())
+		return newError("Tafadhali tumia number, sio: %s", index.Type())
 	case left.Type() == object.DICT_OBJ:
 		return evalDictIndexExpression(left, index, line)
 	default:
-		return newError("Mstari %d: Operesheni hii haiwezekani kwa: %s", line, left.Type())
+		return newError("Operesheni hii haiwezekani kwa: %s", left.Type())
 	}
 }
 
@@ -32,7 +32,7 @@ func evalDictIndexExpression(dict, index object.Object, line int) object.Object 
 
 	key, ok := index.(object.Hashable)
 	if !ok {
-		return newError("Mstari %d: Samahani, %s haitumiki kama ufunguo", line, index.Type())
+		return newError("Samahani, %s haitumiki kama ufunguo", index.Type())
 	}
 
 	pair, ok := dictObject.Pairs[key.HashKey()]

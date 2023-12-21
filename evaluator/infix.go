@@ -9,7 +9,7 @@ import (
 
 func evalInfixExpression(operator string, left, right object.Object, line int) object.Object {
 	if left == nil {
-		return newError("Mstari %d: Umekosea hapa", line)
+		return newError("Umekosea hapa")
 	}
 	switch {
 
@@ -86,12 +86,10 @@ func evalInfixExpression(operator string, left, right object.Object, line int) o
 		return evalBooleanInfixExpression(operator, left, right, line)
 
 	case left.Type() != right.Type():
-		return newError("Mstari %d: Aina Hazilingani: %s %s %s",
-			line, left.Type(), operator, right.Type())
+		return newError("Aina Hazilingani: %s %s %s", left.Type(), operator, right.Type())
 
 	default:
-		return newError("Mstari %d: Operesheni Haieleweki: %s %s %s",
-			line, left.Type(), operator, right.Type())
+		return newError("Operesheni Haieleweki: %s %s %s", left.Type(), operator, right.Type())
 	}
 }
 
@@ -132,8 +130,7 @@ func evalFloatIntegerInfixExpression(operator string, left, right object.Object,
 	case "!=":
 		return nativeBoolToBooleanObject(leftVal != rightVal)
 	default:
-		return newError("Mstari %d: Operesheni Haieleweki: %s %s %s",
-			line, left.Type(), operator, right.Type())
+		return newError("Operesheni Haieleweki: %s %s %s", left.Type(), operator, right.Type())
 	}
 
 	if math.Mod(val, 1) == 0 {
@@ -156,7 +153,7 @@ func evalStringInfixExpression(operator string, left, right object.Object, line 
 	case "!=":
 		return nativeBoolToBooleanObject(leftVal != rightVal)
 	default:
-		return newError("Mstari %d: Operesheni Haieleweki: %s %s %s", line, left.Type(), operator, right.Type())
+		return newError("Operesheni Haieleweki: %s %s %s", left.Type(), operator, right.Type())
 	}
 }
 
@@ -170,7 +167,7 @@ func evalBooleanInfixExpression(operator string, left, right object.Object, line
 	case "||":
 		return nativeBoolToBooleanObject(leftVal || rightVal)
 	default:
-		return newError("Mstari %d: Operesheni Haieleweki: %s %s %s", line, left.Type(), operator, right.Type())
+		return newError("Operesheni Haieleweki: %s %s %s", left.Type(), operator, right.Type())
 	}
 }
 
@@ -202,8 +199,7 @@ func evalFloatInfixExpression(operator string, left, right object.Object, line i
 	case "!=":
 		return nativeBoolToBooleanObject(leftVal != rightVal)
 	default:
-		return newError("Mstari %d: Operesheni Haieleweki: %s %s %s",
-			line, left.Type(), operator, right.Type())
+		return newError("Operesheni Haieleweki: %s %s %s", left.Type(), operator, right.Type())
 	}
 }
 
@@ -242,7 +238,6 @@ func evalIntegerInfixExpression(operator string, left, right object.Object, line
 	case "!=":
 		return nativeBoolToBooleanObject(leftVal != rightVal)
 	default:
-		return newError("Mstari %d: Operesheni Haieleweki: %s %s %s",
-			line, left.Type(), operator, right.Type())
+		return newError("Operesheni Haieleweki: %s %s %s", left.Type(), operator, right.Type())
 	}
 }

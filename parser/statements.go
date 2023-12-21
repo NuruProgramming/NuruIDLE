@@ -1,8 +1,6 @@
 package parser
 
 import (
-	"fmt"
-
 	"github.com/NuruProgramming/NuruIDLE/ast"
 	"github.com/NuruProgramming/NuruIDLE/token"
 )
@@ -68,7 +66,7 @@ func (p *Parser) parseBlockStatement() *ast.BlockStatement {
 
 	for !p.curTokenIs(token.RBRACE) {
 		if p.curTokenIs(token.EOF) {
-			msg := fmt.Sprintf("Mstari %d: Hukufunga Mabano '}'", p.curToken.Line)
+			msg := "Hukufunga Mabano '}'"
 			p.errors = append(p.errors, msg)
 			return nil
 		}

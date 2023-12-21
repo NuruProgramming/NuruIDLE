@@ -33,7 +33,7 @@ func (p *Parser) parseSwitchStatement() ast.Expression {
 	for !p.curTokenIs(token.RBRACE) {
 
 		if p.curTokenIs(token.EOF) {
-			msg := fmt.Sprintf("Mstari %d: Haukufunga ENDAPO (SWITCH)", p.curToken.Line)
+			msg := "Haukufunga ENDAPO (SWITCH)"
 			p.errors = append(p.errors, msg)
 			return nil
 		}
@@ -58,7 +58,7 @@ func (p *Parser) parseSwitchStatement() ast.Expression {
 				}
 			}
 		} else {
-			msg := fmt.Sprintf("Mstari %d: Tulitegemea Kauli IKIWA (CASE) au KAWAIDA (DEFAULT) lakini tumepewa: %s", p.curToken.Line, p.curToken.Type)
+			msg := fmt.Sprintf("Tulitegemea Kauli IKIWA (CASE) au KAWAIDA (DEFAULT) lakini tumepewa: %s", p.curToken.Type)
 			p.errors = append(p.errors, msg)
 			return nil
 		}

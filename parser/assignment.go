@@ -34,7 +34,7 @@ func (p *Parser) parseAssignmentExpression(exp ast.Expression) ast.Expression {
 			msg := fmt.Sprintf("Mstari %d:Tulitegemea kupata kitambulishi au array, badala yake tumepata: %s", p.curToken.Line, node.TokenLiteral())
 			p.errors = append(p.errors, msg)
 		} else {
-			msg := fmt.Sprintf("Mstari %d: Umekosea mkuu", p.curToken.Line)
+			msg := "Umekosea mkuu"
 			p.errors = append(p.errors, msg)
 		}
 		return nil
