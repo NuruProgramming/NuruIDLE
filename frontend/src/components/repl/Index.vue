@@ -5,8 +5,18 @@
       <div>
         {{ entry.response }}
       </div>
+      <div v-if="entry.error" class="p-2">
+        <el-alert
+          title="Kosa"
+          :description="entry.error"
+          type="error"
+          :closable="false" />
+      </div>
     </div>
-    <el-input v-model="input" @keyup.enter="sendToEngine"></el-input>
+    <el-input
+      v-model="input"
+      @keyup.enter="sendToEngine"
+      placeholder="Andika msimbo"></el-input>
   </div>
 </template>
 
@@ -17,37 +27,25 @@ export default {
   data() {
     return {
       input: "",
-      entries: [
-        {
-          input: "x + 2",
-          response: " 2",
-        },
-      ],
+      entries: [],
     };
   },
   methods: {
     sendToEngine() {
-      console.log("im there");
-
-      Start(this.input)
-        .then((resp, other) => {
-          console.log("im here");
-          this.createNewEntry(this.input, resp);
-          console.log(resp);
-          console.log("other", other);
-        })
-        .catch((error) => {
-          console.log(error);
-
-          this.createNewEntry(this.input, error);
-          console.log("im failed");
-        });
-      console.log("im done");
+      Start(this.input).then((resp) => {
+        if (resp.Errors) {
+          this.createNewEntry(this.input, "", resp.Errors[0]);
+        } else {
+          this.createNewEntry(this.input, resp.Evaluated, "");
+        }
+        this.input = "";
+      });
     },
-    createNewEntry(item, respone) {
+    createNewEntry(item, respone, error) {
       this.entries.push({
         input: item,
         response: respone,
+        error: error,
       });
     },
   },
