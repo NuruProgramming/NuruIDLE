@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 
+	"github.com/NuruProgramming/NuruIDLE/object"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
@@ -14,6 +15,9 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+	env := object.NewEnvironment()
+
+	app.env = env
 
 	// Create application with options
 	err := wails.Run(&options.App{

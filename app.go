@@ -10,6 +10,7 @@ import (
 // App struct
 type App struct {
 	ctx context.Context
+	env *object.Environment
 }
 
 // NewApp creates a new App application struct
@@ -25,6 +26,5 @@ func (a *App) startup(ctx context.Context) {
 
 // Greet returns a greeting for the given name
 func (a *App) Start(name string) (string, []string) {
-	env := object.NewEnvironment()
-	return repl.Start(name, env)
+	return repl.Start(name, a.env)
 }
