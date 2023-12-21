@@ -1,6 +1,9 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
 import Repl from "./components/repl/Index.vue";
+import { useDark, useToggle } from "@vueuse/core";
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 </script>
 
 <template>

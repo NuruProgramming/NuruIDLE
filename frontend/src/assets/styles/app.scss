@@ -1,0 +1,54 @@
+$colors: (
+        'primary': (
+                'base': #A10707,
+        ),
+        'success': (
+                'base': #A10707,
+        ),
+        'warning': (
+                'base': #ffba00,
+        ),
+        'danger': (
+                'base': #ff4949,
+        ),
+        'error': (
+                'base': #db2828,
+        ),
+        'info': (
+                'base': #182638,
+        ),
+);
+
+
+$common-component-size: (
+    (
+        'large': '40px',
+        'default': '48px',
+        'small': '32px',
+    )
+);
+
+$button-padding-vertical: (
+    (
+    'large': 20px,
+    'default': 16px,
+    'small': 12px,
+  )
+);
+
+// $button-padding-horizontal: (
+//     (
+//     'large': '20px',
+//     'default': '16px',
+//     'small': '12px',
+//   )
+// );
+
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+// do not use same name, it will override.
+$colors: $colors,
+$common-component-size: $common-component-size,
+
+);
+
+// @use "element-plus/theme-chalk/src/index.scss" as *;
