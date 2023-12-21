@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
+
+	"github.com/NuruProgramming/NuruIDLE/object"
+	"github.com/NuruProgramming/NuruIDLE/repl"
 )
 
 // App struct
@@ -22,6 +24,7 @@ func (a *App) startup(ctx context.Context) {
 }
 
 // Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+func (a *App) Start(name string) (string, []string) {
+	env := object.NewEnvironment()
+	return repl.Start(name, env)
 }

@@ -1,4 +1,4 @@
-module changeme
+module github.com/NuruProgramming/NuruIDLE
 
 go 1.21
 
